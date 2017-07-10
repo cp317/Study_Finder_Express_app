@@ -1,0 +1,32 @@
+<% include partials/header.ejs %>
+<div class="container">
+    <title><%- title %></title>
+    <h1><%- title %></h1>
+    <% if (errors) { %>
+        <% for (var i = 0; i < errors.length; i++) { %>
+            <div class="alert alert-danger">
+                <%- errors[i].msg %>
+            </div>
+        <% } %>
+    <% } %>
+    <form method="POST" action="/register">
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" name="username" class="form-control" placeholder="Username">
+        </div>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" name="email" class="form-control" placeholder="Email">
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" name="password" class="form-control" placeholder="Password">
+        </div>
+        <div class="form-group">
+            <label for="passwordMatch">Re-enter Password</label>
+            <input type="password" name="passwordMatch" class="form-control" placeholder="Re-enter Password">
+        </div>
+        <button type="submit" class="btn btn-primary">Sign Up</button>
+    </form>
+</div>
+<% include partials/footer-end.ejs %>
