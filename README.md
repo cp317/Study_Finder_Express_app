@@ -9,3 +9,5 @@ This will be the repository for express app only, do NOT put anything that is un
 https://www.youtube.com/watch?v=-u-j7uqU7sI&list=PL6gx4Cwl9DGBMdkKFn3HasZnnAqVjzHn_
 
 3. You will also need MySQL. You will need to create the database yourself and the approapriate tables as the migration files are not ready yet.
+
+4. Will need to implement firebase database instead of mysql.
