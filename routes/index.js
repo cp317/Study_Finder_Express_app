@@ -35,26 +35,32 @@ router.post('/register', function(req, res, next) {
             errors: errors
         });
     } else {
+
         const username = req.body.username;
         const email = req.body.email;
         const password = req.body.password;
 
-        const db = require('../db.js');
+        const firebase = require('../firebase.js');
+        var ref = firebase.database().ref('users');
 
         bcrypt.hash(password, saltRounds, function(err, hash) {
-            db.query('INSERT INTO users (username, email, password) VALUES (?, ?, ?)', [username, email, hash], function (error, results, fields) {
-                if (error){
+            ref.push().set({
+                username: username,
+                email: email,
+                password: hash
+            }, function(error) {
+                if (error) {
                     console.log(error);
                     res.render('register', {
                         title: 'Registration Database Error',
-                        errors: null
+                        errors: error
                     });
                 } else {
-                    res.render('register', { title: 'Registration Complete' });
+                    res.render('register', { title: 'Registration Complete', errors: null });
                 }
-            })
-        })
+            });
+        });
     }
-})
+});
 
 module.exports = router;
